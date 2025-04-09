@@ -85,7 +85,6 @@ class LinkedList:
     def append(self, value):
         ## First we will have to create a new node
         new_node = Node(value)
-        
         ## edge case what if there is no list?
         if (self.head is None):
             self.head = new_node
@@ -94,14 +93,32 @@ class LinkedList:
         ## adding a new node to the list
             self.tail.next = new_node
             self.tail = new_node
-        
         ## incrementing by 1
         self.length += 1
-        
         ## Not needed for the append method, just for testing purposes I am returning a bool
         return True
-        
-        
+    
+    def pop(self):
+        ## Edge Case: Empty List
+        if self.length == 0:
+            return None
+        ## Need two variables to track the current and previous node
+        temp = self.head
+        pre = self.head
+        ## iterate through the list until temp.next is None, ensuring pre stops at the second last node
+        while(temp.next):
+            pre = temp
+            temp = temp.next
+        ## removing the last node
+        self.tail = pre
+        self.tail.next = None
+        self.length -= 1
+        ## if the remaining list is now empty
+        if self.length == 0:
+            self.head = None
+            self.tail = None
+        ## returning the node we just removed
+        return temp.value
 
 ## Creating a new LL
 my_linked_list = LinkedList(4)
@@ -115,6 +132,14 @@ print("")
 print("Testing out Append Functionality:")
 ## Testing Append function
 my_linked_list.append(2)
+my_linked_list.printList()
+
+print("")
+
+
+print("Testing out Pop Functionality:")
+## Testing Pop function
+my_linked_list.pop()
 my_linked_list.printList()
     
     
