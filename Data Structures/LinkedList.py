@@ -120,6 +120,20 @@ class LinkedList:
         ## returning the node we just removed
         return temp.value
 
+    def prepend(self, value):
+        new_node = Node(value)
+        ## If the list is empty
+        if self.length == 0:
+            self.head = new_node
+            self.tail = new_node
+        else:
+        ## items in the list
+            new_node.next = self.head
+            self.head = new_node
+        self.length += 1
+        ## Not needed for the prepend method, just for testing purposes I am returning a bool
+        return True
+        
 ## Creating a new LL
 my_linked_list = LinkedList(4)
 
@@ -136,10 +150,15 @@ my_linked_list.printList()
 
 print("")
 
-
 print("Testing out Pop Functionality:")
 ## Testing Pop function
 my_linked_list.pop()
 my_linked_list.printList()
-    
+
+print("")
+
+print("Testing out prepend Functionality:")
+## Testing prepend function
+my_linked_list.prepend(1)
+my_linked_list.printList()
     
