@@ -67,16 +67,25 @@ class Node:
         
 ## Main LinkedList
 class LinkedList:
+    # LL Constructor
     def __init__(self, value):
         new_node = Node(value)
         self.head = new_node
         self.tail = new_node
         self.length = 1
+
+    ## Simple print function
+    def printList(self):
+        temp = self.head
+        
+        while temp is not None:
+            print(temp.value)
+            temp = temp.next
         
 
 ## Creating a new LL
 my_linked_list = LinkedList(4)
 
-print(my_linked_list.head.value)
+my_linked_list.printList()
     
     
