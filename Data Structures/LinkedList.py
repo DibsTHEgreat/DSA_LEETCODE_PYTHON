@@ -58,3 +58,25 @@
 ## Just like before, since we iterate from the head to the desired to the node the time complexity is O(n).
 ## When comparing LL to normal lists, you can just look up the index with a value of 4, making this operation O(1) 
 ## when using a normal list vs a LL.
+
+## Simple helper class; creates a node
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+        
+## Main LinkedList
+class LinkedList:
+    def __init__(self, value):
+        new_node = Node(value)
+        self.head = new_node
+        self.tail = new_node
+        self.length = 1
+        
+
+## Creating a new LL
+my_linked_list = LinkedList(4)
+
+print(my_linked_list.head.value)
+    
+    
