@@ -81,11 +81,40 @@ class LinkedList:
         while temp is not None:
             print(temp.value)
             temp = temp.next
+    
+    def append(self, value):
+        ## First we will have to create a new node
+        new_node = Node(value)
+        
+        ## edge case what if there is no list?
+        if (self.head is None):
+            self.head = new_node
+            self.tail = new_node
+        else:
+        ## adding a new node to the list
+            self.tail.next = new_node
+            self.tail = new_node
+        
+        ## incrementing by 1
+        self.length += 1
+        
+        ## Not needed for the append method, just for testing purposes I am returning a bool
+        return True
+        
         
 
 ## Creating a new LL
 my_linked_list = LinkedList(4)
 
+print("Testing out Print Functionality:")
+## Testing Print
+my_linked_list.printList()
+
+print("")
+
+print("Testing out Append Functionality:")
+## Testing Append function
+my_linked_list.append(2)
 my_linked_list.printList()
     
     
