@@ -213,6 +213,26 @@ class LinkedList:
         temp.next = None
         self.length -= 1
         return temp
+    
+    ## Very common LL question
+    def reverse(self):
+        ## switching head and tail pointers
+        temp = self.head
+        self.head = self.tail
+        self.tail = temp
+        ## need helper variables to traverse the ll
+        after = temp.next
+        before = None
+        ## traversing the length of the list
+        for _ in range(self.length):
+            ## moving after to the next node
+            after = temp.next
+            ## flipping the pointer to reverse it
+            temp.next = before
+            ## moving before to temp
+            before = temp
+            ## moving temp to after
+            temp = after
         
 ## Creating a new LL
 my_linked_list = LinkedList(4)
@@ -255,7 +275,7 @@ my_linked_list.append(5)
 my_linked_list.append(6)
 
 print("")
-print("New List")
+print("New List:")
 my_linked_list.printList()
 
 print("")
@@ -280,7 +300,15 @@ my_linked_list.printList()
 
 print("")
 
-print("Testing out remove Functionality by removing the second node")
+print("Testing out remove Functionality by removing the second node:")
 ## Testing remove function
 my_linked_list.remove(1)
+my_linked_list.printList()
+
+
+print("")
+
+print("Testing out reverse Functionality:")
+## Testing remove function
+my_linked_list.reverse()
 my_linked_list.printList()
