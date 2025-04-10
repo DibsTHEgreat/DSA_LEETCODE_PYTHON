@@ -134,6 +134,22 @@ class LinkedList:
         ## Not needed for the prepend method, just for testing purposes I am returning a bool
         return True
         
+    def pop_first(self):
+        ## edge case if list is empty
+        if self.length == 0:
+            return None
+        ## assigning temp variable to first node
+        temp = self.head
+        ## moving the head pointer to the second node
+        self.head = self.head.next
+        ## original first node now points to none
+        temp.next = None
+        self.length -= 1
+        ## edge case if new list is empty, than we must return none
+        if self.length == 0:
+            self.tail = None
+        return temp.value
+    
 ## Creating a new LL
 my_linked_list = LinkedList(4)
 
@@ -161,4 +177,10 @@ print("Testing out prepend Functionality:")
 ## Testing prepend function
 my_linked_list.prepend(1)
 my_linked_list.printList()
-    
+
+print("")
+
+print("Testing out pop_first Functionality:")
+## Testing pop_first function
+my_linked_list.pop_first()
+my_linked_list.printList()
