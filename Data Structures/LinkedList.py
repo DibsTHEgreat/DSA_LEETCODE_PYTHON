@@ -194,7 +194,26 @@ class LinkedList:
         temp.next = new_node
         self.length += 1
         return True
-
+    
+    def remove(self, index):
+        ## if the index is negative or outside of the scope we return false
+        if index < 0 or index >= self.length:
+            return None
+        ## if the index is for the first node
+        if index == 0:
+           return self.pop_first()
+        ## if the index is for the last node
+        if index == self.length - 1:
+            return self.pop()
+        ## retrieving the node that is right before the node that needs to be removed
+        prev = self.get(index - 1)
+        ## more efficient than doing another get function since that is also O(n)
+        temp = prev.next
+        prev.next = temp.next
+        temp.next = None
+        self.length -= 1
+        return temp
+        
 ## Creating a new LL
 my_linked_list = LinkedList(4)
 
@@ -248,13 +267,20 @@ print(my_linked_list.get(1).value)
 print("")
 
 print("Testing out set Functionality by changing value of first node to 1:")
-## Testing get function
+## Testing set function
 my_linked_list.set_value(0, 1)
 my_linked_list.printList()
 
 print("")
 
 print("Testing out insert Functionality by inserting value 7 in between the first and second node:")
-## Testing get function
+## Testing insert function
 my_linked_list.insert(1, 7)
+my_linked_list.printList()
+
+print("")
+
+print("Testing out remove Functionality by removing the second node")
+## Testing remove function
+my_linked_list.remove(1)
 my_linked_list.printList()
