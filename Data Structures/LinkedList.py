@@ -148,8 +148,21 @@ class LinkedList:
         ## edge case if new list is empty, than we must return none
         if self.length == 0:
             self.tail = None
-        return temp.value
+        return temp
     
+    def get(self, index):
+        ## first we need to test if index is a valid number 
+        if index < 0 or index >= self.length:
+            return None
+        ## variable to point to head
+        temp = self.head
+        ## the underscore (_) represents an unused variable
+        ## for example normally you would label _ i, since
+        ## we don't use i in the for loop, we replace i with _
+        for _ in range(index):
+            temp = temp.next
+        return temp.value
+        
 ## Creating a new LL
 my_linked_list = LinkedList(4)
 
@@ -184,3 +197,18 @@ print("Testing out pop_first Functionality:")
 ## Testing pop_first function
 my_linked_list.pop_first()
 my_linked_list.printList()
+
+my_linked_list.append(2)
+my_linked_list.append(3)
+my_linked_list.append(5)
+my_linked_list.append(6)
+
+print("")
+print("New List")
+my_linked_list.printList()
+
+print("")
+
+print("Testing out get Functionality by returning second node:")
+## Testing get function
+print(my_linked_list.get(1))
