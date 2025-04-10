@@ -161,8 +161,19 @@ class LinkedList:
         ## we don't use i in the for loop, we replace i with _
         for _ in range(index):
             temp = temp.next
-        return temp.value
-        
+        return temp
+    
+    def set_value(self, index, value):
+        ## get the node that the index is at
+        temp = self.get(index)
+        ## if the temp index is valid
+        if temp is not None:
+            ## change the value
+            temp.value = value 
+            ## return true
+            return True
+        return False
+
 ## Creating a new LL
 my_linked_list = LinkedList(4)
 
@@ -211,4 +222,11 @@ print("")
 
 print("Testing out get Functionality by returning second node:")
 ## Testing get function
-print(my_linked_list.get(1))
+print(my_linked_list.get(1).value)
+
+print("")
+
+print("Testing out set Functionality by changing value of first node to 1:")
+## Testing get function
+my_linked_list.set_value(0, 1)
+my_linked_list.printList()
