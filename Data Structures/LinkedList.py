@@ -173,6 +173,27 @@ class LinkedList:
             ## return true
             return True
         return False
+    
+    def insert(self, index, value):
+        ## if the index is negative or outside of the scope we return false
+        if index < 0 or index > self.length:
+            return False
+        ## if the index selected is for the first node we use the prepend func
+        if index == 0:
+            return self.prepend(value)
+        ## if the index selected is for the last node we use the append func
+        if index == self.length:
+            return self.append(value)
+        ## creating a new node
+        new_node = Node(value)
+        ## need a variable pointing to the node before the area we need to insert
+        temp = self.get(index - 1)        
+        ## assigning new node to the next node in the list
+        new_node.next = temp.next
+        ## assigning previous node to the new node
+        temp.next = new_node
+        self.length += 1
+        return True
 
 ## Creating a new LL
 my_linked_list = LinkedList(4)
@@ -229,4 +250,11 @@ print("")
 print("Testing out set Functionality by changing value of first node to 1:")
 ## Testing get function
 my_linked_list.set_value(0, 1)
+my_linked_list.printList()
+
+print("")
+
+print("Testing out insert Functionality by inserting value 7 in between the first and second node:")
+## Testing get function
+my_linked_list.insert(1, 7)
 my_linked_list.printList()
