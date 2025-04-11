@@ -87,6 +87,24 @@ class DoublyLinkedList:
         self.length += 1
         return True
 
+    # pop_first function
+    def pop_first(self):
+        # DLL is empty edge case
+        if self.length == 0:
+            return None
+        # creating helper variable
+        temp = self.head
+        # DLL is only 1 node
+        if self.length == 1:
+            self.head = None
+            self.tail = None
+        else: # DLL is 2 or more nodes big
+            self.head = self.head.next
+            self.head.prev = None
+            temp.next = None
+        self.length -= 1
+        return temp
+        
 # creating a DLL
 my_doubly_linked_list = DoublyLinkedList(1)
 
@@ -106,4 +124,9 @@ my_doubly_linked_list.print_list()
 print("")
 print("Testing out preprend functionality by adding node 2 to the front:")
 my_doubly_linked_list.prepend(2)
+my_doubly_linked_list.print_list()
+
+print("")
+print("Testing out pop_first functionality by removing the first node:")
+my_doubly_linked_list.pop_first()
 my_doubly_linked_list.print_list()
