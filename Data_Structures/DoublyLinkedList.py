@@ -48,11 +48,32 @@ class DoublyLinkedList:
             new_node.prev = self.tail
             # moving tail pointer to last node
             self.tail = new_node
-            
         self.length += 1
-        
         # we need to return True so the insert function can properly return a boolean
         return True
+    
+    # pop function
+    def pop(self):
+        # if list is empty
+        if self.length == 0:
+            return None
+        # helper variable
+        temp = self.tail
+        # if list only has one item
+        if self.length == 1:
+            self.head = None
+            self.tail = None
+        else: # if list has 2 or more items
+            # move tail back to second last node
+            self.tail = self.tail.prev
+            # new tail will now be set to point to none
+            self.tail.next = None
+            # now we disconnect the last node from the DLLs
+            temp.prev = None
+        self.length -= 1            
+        return temp
+        
+    
 
 # creating a DLL
 my_doubly_linked_list = DoublyLinkedList(1)
@@ -63,4 +84,9 @@ my_doubly_linked_list.print_list()
 print("")
 print("Testing out append functionality by adding node 2:")
 my_doubly_linked_list.append(2)
+my_doubly_linked_list.print_list()
+
+print("")
+print("Testing out pop functionality by removing node 2:")
+my_doubly_linked_list.pop()
 my_doubly_linked_list.print_list()
