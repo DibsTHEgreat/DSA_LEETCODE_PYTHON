@@ -72,8 +72,20 @@ class DoublyLinkedList:
             temp.prev = None
         self.length -= 1            
         return temp
-        
     
+    # prepend function
+    def prepend(self, value):
+        new_node = Node(value)
+        # no items in DLLs
+        if self.head == 0:
+            self.head = new_node
+            self.tail = new_node
+        else: # DLL with items in it
+            new_node.next = self.head
+            self.head.prev = new_node
+            self.head = new_node
+        self.length += 1
+        return True
 
 # creating a DLL
 my_doubly_linked_list = DoublyLinkedList(1)
@@ -89,4 +101,9 @@ my_doubly_linked_list.print_list()
 print("")
 print("Testing out pop functionality by removing node 2:")
 my_doubly_linked_list.pop()
+my_doubly_linked_list.print_list()
+
+print("")
+print("Testing out preprend functionality by adding node 2 to the front:")
+my_doubly_linked_list.prepend(2)
 my_doubly_linked_list.print_list()
