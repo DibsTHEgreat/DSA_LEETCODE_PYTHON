@@ -33,9 +33,34 @@ class DoublyLinkedList:
         while temp is not None:
             print(temp.value)
             temp = temp.next
+    
+    # append function
+    def append(self, value):
+        new_node = Node(value)
+        # if the list is empty and you are adding a node
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            # connecting the DLL to new node
+            self.tail.next = new_node
+            # connecting new node to DLL
+            new_node.prev = self.tail
+            # moving tail pointer to last node
+            self.tail = new_node
+            
+        self.length += 1
+        
+        # we need to return True so the insert function can properly return a boolean
+        return True
 
 # creating a DLL
 my_doubly_linked_list = DoublyLinkedList(1)
 
 print("Testing out DLL Constructor:")
+my_doubly_linked_list.print_list()
+
+print("")
+print("Testing out append functionality by adding node 2:")
+my_doubly_linked_list.append(2)
 my_doubly_linked_list.print_list()
