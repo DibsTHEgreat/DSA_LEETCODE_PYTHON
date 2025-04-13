@@ -104,6 +104,24 @@ class DoublyLinkedList:
             temp.next = None
         self.length -= 1
         return temp
+
+    # get function
+    def get(self, index):
+        # validating index
+        if index < 0 or index >= self.length:
+            return None
+        temp = self.head
+
+        # we only want to do this for loop if our index is within the first half of the list 
+        if index < self.length / 2:
+            for _ in range(index):
+                temp =  temp.next
+        else: # if it's in the second half of the list
+            temp =  self.tail
+            # within this range function we can specify: where we want to start (self.length - 1), index specifies where we want to stop,decrement by 1
+            for _ in range(self.length - 1, index, -1):
+                temp = temp.prev
+        return temp
         
 # creating a DLL
 my_doubly_linked_list = DoublyLinkedList(1)
@@ -129,4 +147,9 @@ my_doubly_linked_list.print_list()
 print("")
 print("Testing out pop_first functionality by removing the first node:")
 my_doubly_linked_list.pop_first()
+my_doubly_linked_list.print_list()
+
+print("")
+print("Testing out get functionality by removing the first node:")
+my_doubly_linked_list.get(1)
 my_doubly_linked_list.print_list()
