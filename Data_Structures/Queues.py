@@ -33,7 +33,7 @@ class Queue:
             print(temp.value)
             temp = temp.next
     
-    # enqueue function
+    # adding a node to the back
     def enqueue(self, value):
         new_node = Node(value)
         # empty list
@@ -45,6 +45,22 @@ class Queue:
             self.last = new_node    
         self.length += 1
 
+    # removing a node from the front
+    def dequeue(self):
+        # if the length of the list is 0
+        if self.length == 0:
+            return None
+        temp = self.first
+        # if list is only 1 item
+        if self.length == 1:
+            self.first = None
+            self.last = None
+        else: # if list is more than 1 item
+            self.first = self.first.next
+            temp.next = None
+        self.length -= 1
+        return temp
+
 # creating a Queue
 my_queue = Queue(1)
 my_queue.print_queue()
@@ -53,4 +69,10 @@ print("")
 
 print("Testing out Enqueue Functionality by adding a node of value 2:")
 my_queue.enqueue(2)
+my_queue.print_queue()
+
+print("")
+
+print("Testing out Dequeue Functionality by removing a node:")
+my_queue.dequeue()
 my_queue.print_queue()
