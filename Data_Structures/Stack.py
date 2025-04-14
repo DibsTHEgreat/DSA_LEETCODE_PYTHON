@@ -46,6 +46,17 @@ class Stack:
             self.top = new_node
         # increasing hieght by 1
         self.height += 1
+    
+    # pop function
+    def pop(self):
+        # if stack is empty return nothing
+        if self.height == 0:
+            return None
+        temp = self.top
+        self.top = self.top.next
+        temp.next = None
+        self.height -= 1
+        return temp
         
 # creating a DLL
 my_stack = Stack(1)
@@ -56,4 +67,9 @@ my_stack.print_stack()
 print("")
 print("Testing out push functionality by adding node 2 to the stack:")
 my_stack.push(2)
+my_stack.print_stack()
+
+print("")
+print("Testing out pop functionality by removing node 2 from the stack:")
+my_stack.pop()
 my_stack.print_stack()
