@@ -155,6 +155,29 @@ class DoublyLinkedList:
         # increasing length 
         self.length += 1
         return True
+    
+    def remove(self, index):
+        # if index is invalid
+        if index < 0 or index >= self.length:
+            return None
+        # if index is for the first node
+        if index == 0:
+            return self.pop_first()
+        # if index is the last node:
+        if index == self.length - 1:
+            return self.pop()
+        # assigning target node to temp
+        temp = self.get(index)
+        # assigning the previous pointer from the next node to the previous node of temp from the context of temp
+        temp.next.prev = temp.prev
+        # assigning the next pointer from the previous node to the next node of temp from the context of temp
+        temp.prev.next = temp.next
+        # removing temp from list
+        temp.next = None
+        temp.prev = None
+        self.length -= 1
+        return temp
+        
         
         
 # creating a DLL
@@ -196,4 +219,9 @@ my_doubly_linked_list.print_list()
 print("")
 print("Testing out insert functionality by adding a new node:")
 my_doubly_linked_list.insert(1, 3)
+my_doubly_linked_list.print_list()
+
+print("")
+print("Testing out remove functionality by removing second node:")
+my_doubly_linked_list.remove(1)
 my_doubly_linked_list.print_list()
