@@ -111,7 +111,6 @@ class DoublyLinkedList:
         if index < 0 or index >= self.length:
             return None
         temp = self.head
-
         # we only want to do this for loop if our index is within the first half of the list 
         if index < self.length / 2:
             for _ in range(index):
@@ -122,6 +121,15 @@ class DoublyLinkedList:
             for _ in range(self.length - 1, index, -1):
                 temp = temp.prev
         return temp
+    
+    # set_value function
+    def set_value(self, index, value):
+        temp = self.get(index)
+        # if temp exists
+        if temp is not None:
+            temp.value = value
+            return True
+        return False        
         
 # creating a DLL
 my_doubly_linked_list = DoublyLinkedList(1)
@@ -152,4 +160,9 @@ my_doubly_linked_list.print_list()
 print("")
 print("Testing out get functionality by removing the first node:")
 my_doubly_linked_list.get(1)
+my_doubly_linked_list.print_list()
+
+print("")
+print("Testing out set_value functionality by changing the first node value from 1 to a 2:")
+my_doubly_linked_list.set_value(0, 2)
 my_doubly_linked_list.print_list()
