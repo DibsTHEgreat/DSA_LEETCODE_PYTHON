@@ -130,6 +130,32 @@ class DoublyLinkedList:
             temp.value = value
             return True
         return False        
+    
+    def insert(self, index, value):
+        if index < 0 or index > self.length:
+            return False
+        # if index is the first node
+        if index == 0:
+            return self.prepend(value)
+        # if the index is the last node
+        if index == self.length:
+            return self.append(value)
+        # creating a new node
+        new_node = Node(value)
+        # the get method is O(N)
+        before = self.get(index - 1)
+        # assigning via this way is O(1)
+        after = before.next
+        # connecting new node to the main list
+        new_node.prev = before
+        new_node = after
+        # connecting the nodes to new node
+        before.next = new_node
+        after.prev = new_node
+        # increasing length 
+        self.length += 1
+        return True
+        
         
 # creating a DLL
 my_doubly_linked_list = DoublyLinkedList(1)
@@ -165,4 +191,9 @@ my_doubly_linked_list.print_list()
 print("")
 print("Testing out set_value functionality by changing the first node value from 1 to a 2:")
 my_doubly_linked_list.set_value(0, 2)
+my_doubly_linked_list.print_list()
+
+print("")
+print("Testing out insert functionality by adding a new node:")
+my_doubly_linked_list.insert(1, 3)
 my_doubly_linked_list.print_list()
