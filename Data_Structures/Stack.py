@@ -27,15 +27,33 @@ class Stack:
         new_node = Node(value)
         self.top = new_node
         self.height = 1
-    
+        
+    # print function
     def print_stack(self):
         temp = self.top
         while temp is not None:
             print(temp.value)
             temp = temp.next
-
+            
+    # push function
+    def push(self, value):
+        new_node = Node(value)
+        # if the stack is empty
+        if self.height == 0:
+            self.top = new_node
+        else: # stack has items in it
+            new_node.next = self.top
+            self.top = new_node
+        # increasing hieght by 1
+        self.height += 1
+        
 # creating a DLL
 my_stack = Stack(1)
 
 print("Testing out DLL Constructor:")
+my_stack.print_stack()
+
+print("")
+print("Testing out push functionality by adding node 2 to the stack:")
+my_stack.push(2)
 my_stack.print_stack()
