@@ -131,3 +131,22 @@
 # insert() - O(1) --> when adding a node you would append it to the end, thus, this act is O(1), which is better than BST
 # A LL is better for inputting a burst of data into the DS, there is no other ds that is the best answer in all situations.
 # As you can see, BST has some advantages, and LL also has it advantage. Hence why it is important to understand the big O of all operations.
+
+# Helper Class
+# Since we are dealing with tree nodes there will be a left and right pointer.
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+        
+class BinarySearchTree:
+    def __init__(self):
+        # initializing a BST
+        self.root = None
+        
+my_tree = BinarySearchTree()
+
+print("Testing out basic constructor:")
+print(my_tree.root)
+        
