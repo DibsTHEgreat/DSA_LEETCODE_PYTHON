@@ -60,7 +60,21 @@ class HashTable:
             self.data_map[index] = []
         # adding the key value pair as a list by appending it to the list
         self.data_map[index].append([key, value])
-        
+    
+    def get_item(self, key):
+        # retrieve the address space by using the hash function
+        index = self.__hash(key)
+        # we only want to look for items in a specific address space if there are items within that address space
+        if self.data_map[index] is not None:
+            # since there are items within this address space we want to loop through them
+            # specifically, we are looping through the list within the address space
+            for i in range(len(self.data_map[index])):
+                # this might look complex but what we are doing is grabbing the i (index) of the pair within the list at that specific address 
+                # space. From there we are grabbing the key --> [0] and determining if that is equal to the given key
+                if self.data_map[index][i][0] == key:
+                    # we make sure to select [1] since that is the index of the value
+                    return self.data_map[index][i][1]
+        return None
             
 my_hash_table = HashTable()
 
@@ -72,3 +86,11 @@ print("Testing out set_item function by inserting: [Pokemon, 1000], and [Clash o
 my_hash_table.set_item("Pokemon", 1000)
 my_hash_table.set_item("Clash of Clans", 500)
 my_hash_table.print_table()
+
+print("")
+print("Testing out get_item function by returning the value of key Pokemon:")
+print(my_hash_table.get_item("Pokemon"))
+
+print("")
+print("Testing out get_item function by returning the value of a fake key Pokemons:")
+print(my_hash_table.get_item("Pokemons"))
