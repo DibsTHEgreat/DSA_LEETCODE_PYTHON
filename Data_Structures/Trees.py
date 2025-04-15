@@ -186,6 +186,33 @@ class BinarySearchTree:
                     return True
                 temp = temp.right
 
+# logic behind finding a value within the tree
+# edge case: empty tree
+    # if root == None return false
+# temp = self.root
+# while temp is not None
+    # there are three scenarios
+    # if temp is less than go left
+    # else if temp is greater than go right
+    # else = return True
+# return False
+    def contains(self, value):
+        # if tree is empty
+        #    if self.root == None:
+        #        return False
+        # Since our while loop only runs when temp is not none, the code above is redundant
+        # creating temp variable
+        temp = self.root
+        while temp is not None:
+            if value < temp.value:
+                temp = temp.left
+            elif value > temp.value:
+                temp = temp.right
+            else: # item is equal
+                return True
+        # item is not in the tree
+        return False
+    
 my_tree = BinarySearchTree()
 
 print("Testing out basic constructor:")
@@ -206,4 +233,13 @@ print("Testing out Insert Function for BST by inserting node 3 to the right")
 my_tree.insert(3)
 print(my_tree.root.right.value)
 
-        
+my_tree.insert(12)
+my_tree.insert(4)
+
+print("")
+print("Testing out Contains Function by checking for if 4 is in the tree")
+print(my_tree.contains(3))
+
+print("")
+print("Testing out Contains Function by checking for if 17 is in the tree")
+print(my_tree.contains(17))
