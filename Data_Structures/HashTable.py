@@ -50,9 +50,25 @@ class HashTable:
     def print_table(self):
         for i, val in enumerate(self.data_map):
             print(i, ": ", val)
+    
+    def set_item(self, key, value):
+        # retrieving the address space
+        index = self.__hash(key)
+        # now we have to init the empty list at that address
+        # we only want to do this, if this space is not occupied a.k.a the list has not been created yet
+        if self.data_map[index] is None:
+            self.data_map[index] = []
+        # adding the key value pair as a list by appending it to the list
+        self.data_map[index].append([key, value])
+        
             
 my_hash_table = HashTable()
 
 print("Printing Hash Table after using the constructor function:")
 my_hash_table.print_table()
-                
+
+print("")
+print("Testing out set_item function by inserting: [Pokemon, 1000], and [Clash of Clans, 500]")
+my_hash_table.set_item("Pokemon", 1000)
+my_hash_table.set_item("Clash of Clans", 500)
+my_hash_table.print_table()
