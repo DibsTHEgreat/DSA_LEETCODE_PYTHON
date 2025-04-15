@@ -94,3 +94,40 @@
 # greater than the chosen node. Likewise applies for when all nodes below the main node on the left side will be
 # less than the chosen node.
 
+# Big 0 Notation about BST:
+# The # of nodes within this tree is one: (47), we can represent this as: 2^1 - 1 = 1 node.
+# Now suppose our tree has a second level.
+#                   (47) 
+#                  /    \
+#                (21)  (76)
+# We represent this as 2^2 - 1 = 3 nodes. As the levels continue to progress we had +1 to the power (suppose we label it as n) of 2.
+# Overtime as n approaches infinity, the - 1 becomes insignificant. Thus for each level, it's better to drop the constant, and
+# approximate our calculation by saying 2^n for each level. 
+# When you want to find a node, or remove a node, or add, it all depends on the value of n. For example, if you want to remove a node
+# at the very bottom it will take you n steps (levels) to get to that node and than remove the value. Same applies for finding and adding.
+# Thus, we can say that the big O for all of these operations is O(log n). Why O(log n) and not O(n)? We are dividing our search parameter
+# hence the O(log n) this is divide and conquer.
+#                   (47) 
+#                  /    \
+#                (21)  (76)
+#                / \    / \
+#            (9) (22) (56) (78)
+# For example if we wanted to look for the node 78, we would divide our search parameter by only looking on the right side. Than
+# we continue from there, and ignore 56 since 78 is greater than 76. This is O(log n) time complexity. When you think about it,
+# imagine if there actually was 5 million nodes. By removing one half of a tree, you are removing 2.5 million nodes, greatly
+# reducing the search parameter and increasing efficiency.
+# Worst case scenario, you have an instance where all the nodes in the tree are greater than each other, thus resulting in a long list
+# (8) -> (9) -> (17) -> (45) -> (88)
+# Thus, each operation will take you n levels at a time (at this point it's a Linked List). Which means technically the Big O for a BST is O(n).
+# What we assume with a BST is that it's not going to be a straight line of those greater than conditions passing true. We won't have that
+# worst case scenario, making us treat the BST as if it is O(log n).
+# Thus, for these functions:
+# lookup() - O(log n)
+# insert() - O(log n)
+# remove() - O(log n)
+# When comparing this with a LL, we observe that:
+# lookup() - O(n) --> since we are iterating through a list; thus a BST is better than a LL in terms of looking up nodes
+# remove() - O(n) --> since we are iterating through a list to remove a value this is also O(n) thus a BST is better than a LL in this situation
+# insert() - O(1) --> when adding a node you would append it to the end, thus, this act is O(1), which is better than BST
+# A LL is better for inputting a burst of data into the DS, there is no other ds that is the best answer in all situations.
+# As you can see, BST has some advantages, and LL also has it advantage. Hence why it is important to understand the big O of all operations.
