@@ -145,8 +145,65 @@ class BinarySearchTree:
         # initializing a BST
         self.root = None
         
+# Logic behind inserting a node into a BST
+# First we would have to create a new_node
+# There are some edge cases to consider, for example what if the tree is empty
+    # if root == none then root = new_node
+# we need to compare the value of the new_node with the root
+# We need to declare temp before we iterate through the tree. temp = self.root
+# while loop:
+    # if new_node == temp return false
+    # if: the new_node is less than root go left
+    # else: the new_node is greater than root go right
+    # On the next level:
+    # if there is no node, simply insert the new node
+    # else if there is a node, compare and move to the next level
+# As you can see, the if else statement is used on each level, 
+# thus, we need to create a while loop so there is no need to repeat code.
+    def insert(self, value):
+        new_node = Node(value)
+        # if tree is empty
+        if self.root == None:
+            self.root = new_node
+            return True
+        # creating helper variable
+        temp = self.root
+        while (True):
+            # cannot enter duplicates into the tree
+            if new_node.value == temp.value:
+                return False
+            # if new node is less than temp value move left
+            if new_node.value < temp.value:
+                # if there is no left child node
+                if temp.left is None:
+                    temp.left = new_node
+                    return True
+                temp = temp.left
+            else: # if new node is greater than temp value move right
+                # if there is no left child node
+                if temp.right is None:
+                    temp.right = new_node
+                    return True
+                temp = temp.right
+
 my_tree = BinarySearchTree()
 
 print("Testing out basic constructor:")
 print(my_tree.root)
+
+print("")
+print("Testing out Insert Function for BST by inserting node 2 as the root.")
+my_tree.insert(2)
+print(my_tree.root.value)
+
+print("")
+print("Testing out Insert Function for BST by inserting node 1 to the left")
+my_tree.insert(1)
+print(my_tree.root.left.value)
+
+print("")
+print("Testing out Insert Function for BST by inserting node 3 to the right")
+my_tree.insert(3)
+print(my_tree.root.right.value)
+
         
