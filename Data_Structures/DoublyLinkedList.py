@@ -207,7 +207,7 @@ my_doubly_linked_list.pop_first()
 my_doubly_linked_list.print_list()
 
 print("")
-print("Testing out get functionality by removing the first node:")
+print("Testing out get functionality:")
 my_doubly_linked_list.get(1)
 my_doubly_linked_list.print_list()
 
