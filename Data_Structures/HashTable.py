@@ -100,6 +100,13 @@ class HashTable:
                     # now we just need to append the keys data into all_keys
                     all_keys.append(self.data_map[i][j][0])
         return all_keys
+    
+    # naive approach to checking for similar values within two lists
+    # Create nested for loops: one to go through the first list
+    # and than a second list to compare all items in the second list with that 
+    # item from the first list, and continue on with that pattern
+
+
             
 my_hash_table = HashTable()
 
