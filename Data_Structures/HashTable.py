@@ -27,6 +27,18 @@
 # number of spaces increases the amount of randomness for how the key|value pairs are going to be distrubted through the hash table. Thus,
 # reducing your # of collisions.
 
+# Hash Table Big O
+# Since all methods revolve around using a hash method, we need to understand the implications of utilizing this function and the Big O.
+# For a given key of a certain number of letters it will always be the same # of operations to calculate the hash. Thus, that means
+# the big O of the hash method is O(1) a.k.a constant time. Appending items onto a list is also O(1). When you get a item, it takes
+# O(1) operation to get an address, however, it could potentially take O(n) operations (given the number of items in a list).
+# The assumption with a hash table is that all items will be somewhat evenly distributed accross the address space.
+# The hash method that is built into Python is even more efficient at distributing all of these items. Additionally, you will be dealing
+# with a much larger address space. Thus, collisions will be fairly rare!!! Which means even though there is small possibility of all items
+# ending up in a single address space, we treat a hash table as O(1).
+# O(1) to place a key value pair
+# O(1) to look up a key value pair
+
 class HashTable:
     # the default parameter is set to 7
     def __init__(self, size = 7):
@@ -41,7 +53,7 @@ class HashTable:
         for letter in key:
             # ord() --> ordinal which retrieves the ASCII numerical value for each letter 
             # we multiply by 23 (or any prime number)
-            # we utilize the modulo operator by dividing by the length of the data_map and calculate the remainder
+            # we utilize the modulo operator by dividing by the length of the data_map.0
             my_hash = (my_hash + ord(letter) * 23) % len(self.data_map)
         # return the hash_table
         return my_hash
