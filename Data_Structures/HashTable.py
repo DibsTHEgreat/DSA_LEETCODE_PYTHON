@@ -75,6 +75,19 @@ class HashTable:
                     # we make sure to select [1] since that is the index of the value
                     return self.data_map[index][i][1]
         return None
+    
+    def keys(self):
+        # creating a list where we will place our keys
+        all_keys = []
+        # for loop to iterate through entire address space
+        for i in range(len(self.data_map)):
+            # if a specific index has occupied data than we run a for loop
+            if self.data_map[i] is not None:
+                # for loop to iterate through lists within a single address space
+                for j in range(len(self.data_map[i])):
+                    # now we just need to append the keys data into all_keys
+                    all_keys.append(self.data_map[i][j][0])
+        return all_keys
             
 my_hash_table = HashTable()
 
@@ -94,3 +107,7 @@ print(my_hash_table.get_item("Pokemon"))
 print("")
 print("Testing out get_item function by returning the value of a fake key Pokemons:")
 print(my_hash_table.get_item("Pokemons"))
+
+print("")
+print("Testing out keys function:")
+print(my_hash_table.keys())
