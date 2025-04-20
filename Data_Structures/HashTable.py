@@ -101,12 +101,35 @@ class HashTable:
                     all_keys.append(self.data_map[i][j][0])
         return all_keys
     
-    # naive approach to checking for similar values within two lists
-    # Create nested for loops: one to go through the first list
-    # and than a second list to compare all items in the second list with that 
-    # item from the first list, and continue on with that pattern
+# naive approach to checking for similar values within two lists
+# Create nested for loops: one to go through the first list
+# and than a second list to compare all items in the second list with that 
+# item from the first list, and continue on with that pattern
+def item_in_common_BruteForce(list1, list2):
+    for i in list1: # creating a simple for loop to iterate through the list
+        for j in list2: # iterating through the second list (nested forloop)
+            if i == j:
+                return True
+    return False
+# The method above is inefficient
 
-
+# By utilizing dictionaries we can make the function more efficient
+# Within the first loop, we will be adding values from the list into the dictionary
+# and we will assign a value of True. The first for loop will be O(n). Now the second
+# list, we iterate through the list, and check if an item is within the dictionary.
+# We went through each list once which is O(2n), (drop constants rule) 
+# the time complexity is O(n).
+def item_in_common_efficent(list1, list2):
+    # creating an empty dict
+    my_dict = {}
+    for i in list1:
+        # putting those items from the list into the dict and assigning it a value of true
+        my_dict[i] = True
+    # with the second for loop, we check if items are in the dict
+    for j in list2:
+        if j in my_dict:
+            return True
+    return False
             
 my_hash_table = HashTable()
 
@@ -130,3 +153,10 @@ print(my_hash_table.get_item("Pokemons"))
 print("")
 print("Testing out keys function:")
 print(my_hash_table.keys())
+
+print("")
+print("Testing a compare lists function:")
+list1 = [1,3,5]
+list2 = [2,3,4]
+
+print(item_in_common_efficent(list1, list2))
