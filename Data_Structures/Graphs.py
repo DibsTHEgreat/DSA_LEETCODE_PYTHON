@@ -52,3 +52,17 @@
 # Note: The example above represents a bi-directional graph. As in A points to B and B points to A.
 # If the graph was not bi-directional, than there would not be a point for A-B and B-A.
 # Also, if the graph is weighted, than you would store those values in the matrix and present it as 0 or x.
+
+# An adjacency list is another way to represent a graph, and it’s especially efficient for sparse graphs.
+# Instead of a big matrix, we use a list (or dictionary/map) where each vertex stores a list of its neighbors 
+# (the vertices it's connected to).
+# For example using the same graph as before:
+#    (A) — (B)
+#     |
+#    (C)
+# We would show the adjacency list as:
+#{
+#  A: [B, C],
+#  B: [A],
+#  C: [A]
+#}
