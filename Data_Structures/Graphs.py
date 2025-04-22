@@ -119,9 +119,29 @@ class Graph:
             return True
         return False
     
+    def add_edge(self, v1, v2):
+        # Need to ensure we are adding an edge for 2 existing vertices.
+        if v1 in self.adj_list.keys() and v2 in self.adj_list.keys():
+            # to connect these two vertices, by appending v2 to v1
+            self.adj_list[v1].append(v2)
+            # to connect these two vertices, by appending v1 to v2
+            self.adj_list[v2].append(v1)
+            return True
+        return False
+        
 my_graph = Graph()
 
-my_graph.add_vertex('A')
+my_graph.add_vertex(1)
 
 print("Testing out constructor and add vertex functionality for Graph Class:")
+my_graph.print_graph()
+
+print('')
+print("Adding Vertex B into the graph:")
+my_graph.add_vertex(2)
+my_graph.print_graph()
+
+print('')
+print("Testing out add edge functionality for Graph Class:")
+my_graph.add_edge(1, 2)
 my_graph.print_graph()
