@@ -140,6 +140,19 @@ class Graph:
                 pass
             return True
         return False
+
+    def remove_vertex(self, vertex):
+        # ensure that the vertex exists
+        if vertex in self.adj_list.keys():
+            # What we are doing here is finding the row of other_vertex from the given vertex
+            # From there, we will remove the given vertex from the row of other_vertex
+            for other_vertex in self.adj_list[vertex]:
+                self.adj_list[other_vertex].remove(vertex)
+            # Once we have removed all instances of vertex from the rows we can remove the entire main vertex row itself
+            del self.adj_list[vertex]
+            return True
+        return False
+                
        
 my_graph = Graph()
 
@@ -165,4 +178,9 @@ my_graph.print_graph()
 print('')
 print("Testing out remove edge functionality for Graph Class:")
 my_graph.remove_edge('A', 'B')
+my_graph.print_graph()
+
+print('')
+print("Testing out remove vertex functionality for Graph Class by removing Vertex A:")
+my_graph.remove_vertex('A')
 my_graph.print_graph()
