@@ -132,30 +132,37 @@ class Graph:
     def remove_edge(self, v1, v2):
         # we can only remove the edge if the vertices exist
         if v1 in self.adj_list.keys() and v2 in self.adj_list.keys():
-            # removing the edges
-            self.adj_list[v1].remove(v2)
-            self.adj_list[v2].remove(v1)
+            try:
+                # removing the edges
+                self.adj_list[v1].remove(v2)
+                self.adj_list[v2].remove(v1)
+            except ValueError:
+                pass
             return True
         return False
        
 my_graph = Graph()
 
-my_graph.add_vertex(1)
+my_graph.add_vertex('A')
 
 print("Testing out constructor and add vertex functionality for Graph Class:")
 my_graph.print_graph()
 
 print('')
-print("Adding Vertex B into the graph:")
-my_graph.add_vertex(2)
+print("Adding Vertex B, C, and D into the graph:")
+my_graph.add_vertex('B')
+my_graph.add_vertex('C')
+my_graph.add_vertex('D')
 my_graph.print_graph()
 
 print('')
 print("Testing out add edge functionality for Graph Class:")
-my_graph.add_edge(1, 2)
+my_graph.add_edge('A', 'B')
+my_graph.add_edge('B', 'C')
+my_graph.add_edge('C', 'A')
 my_graph.print_graph()
 
 print('')
 print("Testing out remove edge functionality for Graph Class:")
-my_graph.remove_edge(1, 2)
+my_graph.remove_edge('A', 'B')
 my_graph.print_graph()
