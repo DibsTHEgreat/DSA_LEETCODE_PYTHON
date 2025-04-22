@@ -66,3 +66,38 @@
 #  B: [A],
 #  C: [A]
 #}
+
+# A huge difference between an adjacency list and adjacency matrix is that in a matrix each vertex has to store
+# all of the vertices it is not connected to. For example: A: 0 0 1 0 1. Thus, from a space complexity stand-point
+# the adjacency matrix is the # of vertices squared, whereas, the adjacency list is the # of vertices + the # of edges.
+# Adjacency Matrix: O(|V|^2)
+# Adjacency List: O(|V| + |E|)
+# What is the big O for adding a vertex?
+# With an adjacency list adding a vertex is quite simple. Thus the operation is O(1)
+#{
+#  A: [B, C],
+#  B: [A],
+#  C: [A]
+#  D: [] <-- New Vertex
+#}
+# With an adjacency matrix this operation is much more complex. Since now you will have to take into account all vertices
+# including inputting data for vertices that don't point at a new node.
+#     A B C D
+#   A 0 1 1 0
+#   B 1 0 0 0
+#   C 1 0 0 0
+#   D 0 0 0 0
+# As you can see this would result in a O(|V|^2) time complexity.
+# Adding an edge to an adjaceny list is quite similar to adding a vertex. It's as simple as appending a value to a list.
+# Adding an edge to an adjaceny matrix is actually less complex as compared to adding a vertex. Now that all the values are
+# set to 0, all you have to do is set the value of 0 to 1 for where-ever the edge needs to be established. 
+# Both of these operations are O(1).
+# Removing an edge between two vertices is also important to understand.
+# When you are removing a relationship between two vertices in an adjacency list, you have to iterate through the list of edges 
+# that is connected with the edge you want to remove. Hence the time complexity is O(|E|).
+# When you are removing an edge from a adjacency matrix the process is quite simple and very similar to adding an edge, hence it is 0(1).
+# When removing a vertex from a adjaceny list we have to iterate through all dictionaries to find for possible edges.  Whereas,
+# with a matrix all you have to do is remove the column/row for that specific vertex.
+# Thus, for this instance: 
+# Adjacency Matrix: O(|V|^2)
+# Adjacency List: O(|V| + |E|)
