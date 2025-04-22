@@ -32,3 +32,23 @@
 # to two other nodes. If you want to continue down this rabbit hole, Linked Lists are a form
 # of a tree, and a tree is a form of a graph. Therefore, a linked list is a form of a graph
 # with the limitation that they can only point to one other node.
+
+# An adjacency matrix is a square matrix used to represent a finite graph.
+# The rows and columns of the matrix represent vertices. The value at position [i][j] 
+# tells you if there's an edge between vertex i and vertex j.
+# For example:
+#    (A) — (B)
+#     |
+#    (C)
+# Adjacency matrix:
+#     A B C <-- This axis represents an items it has an edge with.
+#   A 0 1 1
+#   B 1 0 0
+#   C 1 0 0
+#   ^
+#   This axis represents the actual vertex
+# 0 = means no edge
+# 1 = means there is an edge
+# Note: The example above represents a bi-directional graph. As in A points to B and B points to A.
+# If the graph was not bi-directional, than there would not be a point for A-B and B-A.
+# Also, if the graph is weighted, than you would store those values in the matrix and present it as 0 or x.
