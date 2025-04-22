@@ -101,3 +101,27 @@
 # Thus, for this instance: 
 # Adjacency Matrix: O(|V|^2)
 # Adjacency List: O(|V| + |E|)
+
+class Graph:
+    def __init__(self):
+        # creating a dictionary
+        self.adj_list = {}
+    
+    def print_graph(self):
+        for vertex in self.adj_list:
+            print(vertex, ':', self.adj_list[vertex])
+    
+    def add_vertex(self, vertex):
+        # we don't want duplicate keys within the adjacency list
+        if vertex not in self.adj_list.keys():            
+            # Adding the vertex as a key into the adjacency list and set it equal to an empty list
+            self.adj_list[vertex] = []
+            return True
+        return False
+    
+my_graph = Graph()
+
+my_graph.add_vertex('A')
+
+print("Testing out constructor and add vertex functionality for Graph Class:")
+my_graph.print_graph()
