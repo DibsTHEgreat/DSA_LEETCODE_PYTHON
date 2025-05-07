@@ -112,3 +112,22 @@
 # Then we compare one more time:
 # Will be shown as:  X |100 | 99 | 61 | 58 | 72
 #                    0 |  1 |  2 |  3 |  4 |  5
+
+class MaxHeap:
+    def __init__(self):
+        self.heap = []
+    
+    # Starting at Node 0 instead of node 1 hence the plus 1
+    def _left_child(self, index):
+        return 2 * index + 1
+    
+    # Starting at Node 0 instead of node 1 hence the plus 2
+    def _right_child(self, index):
+        return 2 * index + 2
+    
+    # Doing integer division
+    def _parent(self, index):
+        return (index - 1) // 2
+    
+    def _swap(self, index1, index2):
+        self.heap[index1], self.heap[index2] = self.heap[index2], self.heap[index1]
