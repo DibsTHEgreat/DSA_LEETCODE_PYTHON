@@ -62,3 +62,53 @@
 # This is why it is so important for the tree to be complete, because gaps in the tree will cause missing values in the list.
 # If you wanted to find the childern of the root node, startign with the left_child the equation would be: 2 * parent_index which is 2 -> 72.
 # The right child would be 2 * parent_index + 1 = 3 --> 61. Math becomes easy when you leave the index spot of 0 open.
+
+# Logic behind inserting values into a HEAP.
+# Example Max-heap: Need to Insert Node 100.
+#               (99)
+#             /      \ 
+#           (72)     (61)
+#           /
+#       (58)
+# We have to start inserting a value by inserting it into the next open space.
+# For example:
+#               (99)
+#             /      \ 
+#           (72)     (61)
+#           /  \
+#       (58)   (100)
+# The reason for this is because we need to ensure that the tree remains complete. Now compare Node 100 to its parent, since 100 is greater than 72
+# we switch the nodes.
+# For example:
+#               (99)
+#             /      \ 
+#           (100)     (61)
+#           /  \
+#       (58)   (72)
+# Then we compare it against its parent again:
+# For example:
+#               (100)
+#             /      \ 
+#           (99)     (61)
+#           /  \
+#       (58)   (72)
+# We will move this up using a while loop, and there will be two conditionals that can break us out of the while loop. The first one is if
+# we reach the top of the heap, for example, once Node 100 gets to the root we want to stop running the while loop. There is another condition
+# we want to consider which is when you insert a node and it doesn't reach the top because it fails the greater than check. 
+# For example inserting node 75:
+#               (99)
+#             /      \ 
+#           (72)     (61)
+#           /  \
+#       (58)   (100)
+# When looking at this logic from a list point of view we noticed that we'll have to use those equations again.
+# Going back to the original example of inserting Node 100.
+# Will be shown as:  X | 99 | 72 | 61 | 58 | 100
+#                    0 |  1 |  2 |  3 |  4 |  5
+# What we have to do is divide the index of 5 by 2 which is 2.5, this becomes 2 since we are doing integer division.
+# Hence we now have the index location of the parent node to compare with.
+# Will be shown as:  X | 99 | 100 | 61 | 58 | 72
+#                    0 |  1 |  2 |  3 |  4 |  5
+# Then we compare one more time:
+# Will be shown as:  X |100 | 99 | 61 | 58 | 72
+#                    0 |  1 |  2 |  3 |  4 |  5
