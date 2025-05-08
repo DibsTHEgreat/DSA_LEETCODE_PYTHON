@@ -131,3 +131,25 @@ class MaxHeap:
     
     def _swap(self, index1, index2):
         self.heap[index1], self.heap[index2] = self.heap[index2], self.heap[index1]
+    
+    def insert(self, value):
+        # adding the new value to the end of the list
+        self.heap.append(value)
+        # current is equal to the index value of the last node
+        current = len(self.heap) - 1
+        # If current is ever equal to 0 than that means current is at the root, and there is no need to continue the loop
+        # We also want to run the loop if the value of current is greater than parent if not end loop
+        while current > 0 and self.heap[current] > self.heap[self._parent(current)]:
+            # swapping new value with parent
+            self._swap(current, self._parent(current))
+            current = self._parent(current)
+            
+my_heap = MaxHeap()
+
+print("Printing Heap Table after adding some values:")
+my_heap.insert(99)
+my_heap.insert(72)
+my_heap.insert(61)
+my_heap.insert(58)
+print(my_heap.heap)
+print("Printing Heap Table after adding some values:")
