@@ -143,7 +143,43 @@ class MaxHeap:
             # swapping new value with parent
             self._swap(current, self._parent(current))
             current = self._parent(current)
-            
+    
+    # helper function for remove function
+    def _sink_down(self, index):
+        # points to the root node
+        max_index = index
+        while True:
+            # Grabbing the child nodes
+            left_index = self._left_child(index)
+            right_index = self._right_child(index)
+            # Comparing the max node with the left node
+            if (left_index < len(self.heap) and self.heap[left_index] > self.heap[max_index]):
+                max_index = left_index
+            # Comparing the max node with the right node
+            if (right_index < len(self.heap) and self.heap[right_index] > self.heap[max_index]):
+                max_index = right_index
+            # swap values as the main node traverses down
+            if max_index != index:
+                self._swap(index, max_index)
+                index = max_index
+            else:
+                return
+    
+    # only need to remove item from the top (doesn't matter if it is a min-heap or a max-heap)
+    def remove(self):
+        # if the heap is empty
+        if len(self.heap) == 0:
+            return None
+        # only one item in the heap
+        if len(self.heap) == 1:
+            return self.heap.pop()
+        # assigning root value to a variable
+        max_value = self.heap[0]
+        # now we move the last value to where the root is (and start the sink down process)
+        self.heap[0] = self.heap.pop()
+        self._sink_down(0)
+        return max_value
+
 my_heap = MaxHeap()
 
 print("Printing Heap Table after adding some values:")
@@ -152,4 +188,7 @@ my_heap.insert(72)
 my_heap.insert(61)
 my_heap.insert(58)
 print(my_heap.heap)
-print("Printing Heap Table after adding some values:")
+
+print("Testing remove functionality by removing a node:")
+my_heap.remove()
+print(my_heap.heap)
